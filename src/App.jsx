@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import SignUpForm from '../components/SignupForm'
+
 
 function App() {
 
@@ -11,6 +13,8 @@ function App() {
 
     <h1>Oscar</h1>
 
+
+<SignUpForm />
     </>
   )
 }
