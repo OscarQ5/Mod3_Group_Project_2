@@ -40,3 +40,34 @@
 .read-the-docs {
   color: #888;
 }
+
+.header{
+  /* background-image: url("https://yourbrooklynguide.com/wp-content/uploads/2023/03/residential-parking-in-NYC-on-a-street-in-Park-Slope-Brooklyn-768x1024.jpg");
+  background-size: cover; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 100px;
+  align-items: center;
+  border: solid 1px white ;
+  padding: 30px;
+  border-radius: 45px;
+  margin: 20px;
+  width:100%;
+
+}
+
+.nav-option{
+  height: 50px;
+  border-radius: 10px;
+
+}
+
+.nav-option:hover{
+  background-color: white;
+  color: black;
+}
+
+.image-background{
+  /* background-image: url("https://lede-admin.nyc.streetsblog.org/wp-content/uploads/sites/48/2021/09/congestion-from-above-crop.jpg"); */
+}
