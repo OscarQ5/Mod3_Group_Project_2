@@ -1,16 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Geolocation from './components/Geolocation.jsx'
 import './App.css'
 
 function App() {
 
   return (
     <>
-
-
-    <h1> Kenia's Test Push </h1>
-
-    <h1>Oscar</h1>
-
+    <Geolocation />
     </>
   )
 }
