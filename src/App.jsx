@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import SignUpForm from '../components/SignupForm'
 import Header from './components/Header.jsx'
 
 function App() {
@@ -10,6 +11,8 @@ function App() {
    <Header />
 
 
+
+<SignUpForm />
     </>
   )
 }

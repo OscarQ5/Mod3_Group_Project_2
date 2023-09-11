@@ -1,0 +1,20 @@
+.signUp {
+
+    border: 3px solid red;
+    background-color: rgb(222, 230, 222);
+}
+
+label{
+    font-style: oblique;
+}
+
+p{
+    font-style: italic;
+    color: red;
+}
+
+.btn{
+  text-decoration: black;
+  background-color: rgb(141, 108, 108);
+  border:solid red ;
+}
