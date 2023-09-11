@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Geolocation from './components/Geolocation.jsx'
 import './App.css'
 import SignUpForm from '../components/SignupForm'
 import Header from './components/Header.jsx'
@@ -7,12 +8,9 @@ function App() {
 
   return (
     <>
-
-   <Header />
-
-
-
-<SignUpForm />
+    <Geolocation />
+    <Header />
+    <SignUpForm />
     </>
   )
 }
