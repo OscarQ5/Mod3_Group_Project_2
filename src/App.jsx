@@ -1,17 +1,14 @@
 import { useState } from 'react'
 import './App.css'
+import Header from './components/Header.jsx'
 
 function App() {
 
   return (
     <>
 
+   <Header />
 
-    <h1> Kenia's Test Push </h1>
-
-    <h1>Oscar</h1>
-
-    <h1> Natyka Testing 123</h1>
 
     </>
   )
