@@ -4,9 +4,9 @@ import './AboutPage.css'
 const AboutPage = () => {
     return (
         <>
-            <div >
+            <div className="aboutPage">
 
-                <h1>Meet The Code-Crafters!!!!</h1>
+                <div className="team">
                 <h2>Jeremy Montes</h2>
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/129802356?v=4' alt="Jeremy Montes' profile picture" height='200' width='200' />
                 <p>✨A little something about ourselves✨</p>
@@ -16,7 +16,9 @@ const AboutPage = () => {
                 <Link to='https://www.linkedin.com/in/jeremy-b-montes'>
                     <h4>Jeremy Montes' LinkedIn Profile</h4>
                 </Link>
+                </div>
                 <br />
+                <div className="team">
                 <h2>Kenia Decoteau</h2>
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/131702982?v=4' alt="Kenia Decoteau's profile picture" height='200' width='200' />
                 <p>✨A little something about ourselves✨</p>
@@ -26,7 +28,9 @@ const AboutPage = () => {
                 <Link to='https://www.linkedin.com/in/kenia-decoteau/'>
                     <h4>Kenia Decoteau's LinkedIn Profile</h4>
                 </Link>
+                </div>
                 <br />
+                <div className="team">
                 <h2>Natyka Callwood</h2>
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/127881507?v=4' alt="Natyka Callwood's profile picture" height='200' width='200' />
                 <p>✨A little something about ourselves✨</p>
@@ -36,7 +40,9 @@ const AboutPage = () => {
                 <Link to='https://www.linkedin.com/in/natykajcallwood'>
                     <h4>Natyka Callwood's LinkedIn Profile</h4>
                 </Link>
+                </div>
                 <br />
+                <div className="team">
                 <h2>Oscar Quintanilla</h2>
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/127880951?v=4' alt="Oscar Quintanilla's profile picture" height='200' width='200' />
                 <p>✨A little something about ourselves✨</p>
@@ -46,6 +52,7 @@ const AboutPage = () => {
                 <Link to='https://www.linkedin.com/in/oscarquintanilla5'>
                     <h4>Oscar Quintanilla's LinkedIn Profile</h4>
                 </Link>
+                </div>
                 <br />
 
             </div>

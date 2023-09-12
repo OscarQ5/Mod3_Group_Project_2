@@ -2,6 +2,14 @@
 
     border: 3px solid red;
     background-color: rgb(222, 230, 222);
+    border-radius: 45px;
+    padding: 15px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 400px;
+
 }
 
 label{

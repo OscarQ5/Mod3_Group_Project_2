@@ -25,6 +25,7 @@ function Header(){
     <a class="dropdown-item" href="/Profile">Profile</a>
     <a class="dropdown-item" href="/">SignOut</a>
     <a class="dropdown-item" href="/About">About</a>
+ 
 
   </div>
 </div>

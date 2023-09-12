@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import "./Geolocation.css"
 
 const Geolocation = () => {
     const [userLocation, setUserLocation] = useState(null);
@@ -71,7 +72,7 @@ const Geolocation = () => {
     };
 
     return (
-        <div>
+        <div className="geolocation">
             {userLocation ? (
                 <div>
                     <h2>Your Location:</h2>
@@ -83,8 +84,10 @@ const Geolocation = () => {
                             <p>{address}</p>
                         </div>
                     )}
+                    <div className="buttons">
                     <button onClick={handleTakeParking}>Take My Parking</button>
                     <button onClick={handleGiveParking}>Give Parking</button>
+                    </div>
                 </div>
             ) : (
                 <p>Fetching location...</p>

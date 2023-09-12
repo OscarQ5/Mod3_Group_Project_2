@@ -12,11 +12,12 @@
         gap: 100px;
         align-items: center;
         border: solid 1px rgb(21, 3, 3) ;
-        padding: 30px;
+        padding: 20px;
         border-radius: 45px;
         margin: 20px;
         width:100%;
-        background-color: white;
+        background-color: rgb(230, 230, 230);
       
-      
+        position:relative;
+        top: -55px
 }
