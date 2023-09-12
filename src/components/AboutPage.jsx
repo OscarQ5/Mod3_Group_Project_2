@@ -1,3 +1,4 @@
+
     import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
     import './AboutPage.css'
 
@@ -5,6 +6,7 @@
         return (
             <>
                 <div >
+
                 <h1>Meet The Code-Crafters!!!!</h1>
                     <h2>Jeremy Montes</h2>
                     <img id='profile-images' src='https://avatars.githubusercontent.com/u/129802356?v=4' alt="Jeremy Montes' profile picture" height='200' width='200' />
@@ -46,10 +48,14 @@
                         <h4>Oscar Quintanilla's LinkedIn Profile</h4>
                     </Link>
                     <br/>
+
                 </div>
+
                 <footer> 10.1 - Code-Crafters - 2023© </footer>
             </>
         )
     }
 
+
     export default AboutPage;
+
