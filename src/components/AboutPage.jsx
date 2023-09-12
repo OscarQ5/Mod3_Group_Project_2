@@ -1,7 +1,7 @@
     import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-    import './ProfilePage.css'
+    import './AboutPage.css'
 
-    const ProfilePage = () => {
+    const AboutPage = () => {
         return (
             <>
                 <div >
@@ -52,4 +52,4 @@
         )
     }
 
-    export default ProfilePage;
+    export default AboutPage;
