@@ -2,3 +2,13 @@
     border: 3px solid black;
 }
 
+.aboutPage{
+    display: flex;
+    flex-direction: row;
+   
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid black;
+    background-color: blanchedalmond;
+
+}
