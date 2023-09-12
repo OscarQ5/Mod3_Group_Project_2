@@ -42,8 +42,7 @@
 }
 
 .header{
-  /* background-image: url("https://yourbrooklynguide.com/wp-content/uploads/2023/03/residential-parking-in-NYC-on-a-street-in-Park-Slope-Brooklyn-768x1024.jpg");
-  background-size: cover; */
+
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -68,6 +67,8 @@
   color: black;
 }
 
-.image-background{
-  /* background-image: url("https://lede-admin.nyc.streetsblog.org/wp-content/uploads/sites/48/2021/09/congestion-from-above-crop.jpg"); */
+
+body{
+       background-image: url("https://myimprov.com/wp-content/uploads/NYCParking.png");
+        background-size: cover;
 }
