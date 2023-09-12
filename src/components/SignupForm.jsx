@@ -16,15 +16,19 @@ const SignUpForm = () => {
         console.log("Car type: ", carType);
         console.log("Make/model: ", makeModel);
 
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
+
+        console.log(event.target.files);
+        setFile(URL.createObjectURL(event.target.files[0]));
+
     }
 
 
 
 
     return (
-        <div class='signUp'>
+
+        <div className='signUp'>
+
             <h2> Sign Up Form</h2>
             <label> Name</label>
             <br />
@@ -60,14 +64,23 @@ const SignUpForm = () => {
 
             <h2>BackGround Check</h2>
             <p> Enter Picture of Indentification</p>
-            <input type="file" onChange={handleUserSubmit}  
-            required
-            />
-            <img src={file} />
 
+            <input type="file" onChange={handleUserSubmit}
+                required
+            />
 
             <br />
-            <button type='submit'  class="btn"> SignUp/Login</button>
+            <button type='submit' className="btn"> SignUp/Login</button>
+
+
+
+            <div className='formResults'>
+                <h2> {name}</h2>
+                <h2> {makeModel}</h2>
+                <h2> {carType}</h2>
+                <img src= {file}/>
+            </div>
+
         </div>
 
 
