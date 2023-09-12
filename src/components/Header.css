@@ -1,0 +1,22 @@
+/* .dropdown{
+    position:relative
+} */
+
+.header-nav{
+    
+        /* background-image: url("https://yourbrooklynguide.com/wp-content/uploads/2023/03/residential-parking-in-NYC-on-a-street-in-Park-Slope-Brooklyn-768x1024.jpg");
+        background-size: cover; */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 100px;
+        align-items: center;
+        border: solid 1px rgb(21, 3, 3) ;
+        padding: 30px;
+        border-radius: 45px;
+        margin: 20px;
+        width:100%;
+        background-color: white;
+      
+      
+}

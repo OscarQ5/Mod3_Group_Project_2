@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "v5.3",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.7.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
