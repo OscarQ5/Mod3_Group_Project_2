@@ -2,7 +2,6 @@ import Geolocation from './components/Geolocation.jsx'
 import './App.css'
 import SignUpForm from './components/SignupForm'
 import Header from './components/Header.jsx'
-
 import AboutPage from './components/AboutPage.jsx'
 import { BrowserRouter as Router,Routes, Route, Link } from "react-router-dom";
 

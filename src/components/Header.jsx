@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom"
 import AboutPage from "./AboutPage"
 import "./Header.css"
@@ -23,6 +22,7 @@ function Header(){
 
 
     <a class="dropdown-item" href="/">Home</a>
+    <a class="dropdown-item" href="/Profile">Profile</a>
     <a class="dropdown-item" href="/">SignOut</a>
     <a class="dropdown-item" href="/About">About</a>
 

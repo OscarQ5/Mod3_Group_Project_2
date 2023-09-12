@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Geolocation = () => {
     const [userLocation, setUserLocation] = useState(null);
     const [address, setAddress] = useState("");
+    const [parkingQueue, setParkingQueue] = useState([]);
 
-    useEffect(() => {
+    const getUserLocation = () => {
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
@@ -17,7 +18,9 @@ const Geolocation = () => {
         } else {
             console.log('Geolocation is not supported in this browser.');
         }
-    }, []);
+    }
+
+    useEffect(() => { getUserLocation() }, []);
 
     const getAddressFromCoordinates = (lat, lng) => {
         const apiKey = "prj_live_sk_40643c832a171cb168589897f0dca825b1301ed1";
@@ -42,6 +45,31 @@ const Geolocation = () => {
             .catch(err => console.error(err));
     };
 
+    const handleTakeParking = () => {
+        console.log('Take My Parking clicked')
+        if (userLocation) {
+            setParkingQueue([...parkingQueue, { location: userLocation, action: 'take' }]);
+        } else {
+            console.log('User location not available.');
+        }
+    };
+
+    const handleGiveParking = () => {
+        console.log('Give Parking clicked')
+        if (userLocation) {
+            setParkingQueue([...parkingQueue, { location: userLocation, action: 'give' }]);
+            console.log(parkingQueue)
+        } else {
+            console.log('User location not available.');
+        }
+    };
+
+    const findMatchingParking = () => {
+        // Implement logic to find matching parking based on user locations
+        // Calculate distances and filter the parkingQueue to find matches
+        // Update state to reflect the matched users
+    };
+
     return (
         <div>
             {userLocation ? (
@@ -55,6 +83,8 @@ const Geolocation = () => {
                             <p>{address}</p>
                         </div>
                     )}
+                    <button onClick={handleTakeParking}>Take My Parking</button>
+                    <button onClick={handleGiveParking}>Give Parking</button>
                 </div>
             ) : (
                 <p>Fetching location...</p>
