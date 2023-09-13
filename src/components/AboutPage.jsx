@@ -33,7 +33,7 @@ const AboutPage = () => {
                 <div className="team">
                 <h2>Natyka Callwood</h2>
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/127881507?v=4' alt="Natyka Callwood's profile picture" height='200' width='200' />
-                <p>✨Software engineer student studying. My dream is to take my new skills and help improve our daily lives.✨</p>
+                <p>✨Software engineer student studying at Pursuit. My dream is to take my new skills and help improve our daily lives.✨</p>
                 <Link to='https://github.com/NatykaC'>
                 <img src="src/assets/5201D372-43A2-4466-A37B-AC9889C73C0D.png" height="50"/>
                 </Link>
