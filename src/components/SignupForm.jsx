@@ -1,14 +1,23 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./SignUpForm.css"
+import userData from "../UserData.json"
+import { useNavigate } from "react-router-dom"
 
-const SignUpForm = () => {
+const SignUpForm = ({isAuthenticated,setIsAuthenticated}) => {
 
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate()
 
     const [name, setName] = useState("")
     const [makeModel, setMakeModel] = useState("")
     const [carType, setCarType] = useState("")
     const [file, setFile] = useState();
+
+    useEffect(() => {
+        console.log("isAuthenticated:", isAuthenticated);
+    }, [isAuthenticated]);
 
     const handleUserSubmit = (event) => {
         event.preventDefault();
@@ -19,10 +28,21 @@ const SignUpForm = () => {
 
         console.log(event.target.files);
         setFile(URL.createObjectURL(event.target.files[0]));
-
     }
+    
+    const submitForm = (event) => {
+        event.preventDefault()
+         const user = userData.find((user) => user.username === username && user.password === password);
 
-
+         if (user) {
+             setIsAuthenticated(true);
+             console.log(isAuthenticated)
+             navigate("/Profile")
+             console.log(`User ${user.name} logged in.`);
+         } else {
+             console.error("Authentication failed. Invalid username or password.");
+         }
+    }
 
 
     return (
@@ -70,7 +90,27 @@ const SignUpForm = () => {
             />
 
             <br />
-            <button type='submit' className="btn"> SignUp/Login</button>
+            <label>Username</label>
+                <br />
+                <input
+                    type="text"
+                    placeholder='Enter Username'
+                    value={username}
+                    onChange={(event) => setUsername(event.target.value)}
+                    required
+                />
+                <br />
+                <label>Password</label>
+                <br />
+                <input
+                    type="password"
+                    placeholder='Enter Password'
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    required
+                />
+                <br />
+            <button type='submit' className="btn" onClick={submitForm}> SignUp/Login</button>
 
 
 

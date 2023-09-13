@@ -14,18 +14,17 @@ function Header(){
 <h1> Take My Parking</h1>
 
 
-<div class="dropdown">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+<div className="dropdown">
+  <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
     Menu
   </button>
-  <div class="dropdown-menu">
+  <div className="dropdown-menu">
 
 
-    <a class="dropdown-item" href="/">Home</a>
-    <a class="dropdown-item" href="/Profile">Profile</a>
-    <a class="dropdown-item" href="/">SignOut</a>
-    <a class="dropdown-item" href="/About">About</a>
- 
+    <a className="dropdown-item" href="/">Home</a>
+    <a className="dropdown-item" href="/Profile">Profile</a>
+    <a className="dropdown-item" href="/">SignOut</a>
+    <a className="dropdown-item" href="/About">About</a>
 
   </div>
 </div>
