@@ -13,10 +13,10 @@ const AboutPage = () => {
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/129802356?v=4' alt="Jeremy Montes' profile picture" height='200' width='200' />
                 <p>✨Lifesaver, musician, gamer, and early career software engineer seeking optimal solutions to complex problems.✨</p>
                 <Link to='https://github.com/JBMontes'>
-                   <img src={GithubIcon} height="50"/>
+                   <img className="iconImage" src={GithubIcon} height="50"/>
                 </Link>
                 <Link to='https://www.linkedin.com/in/jeremy-b-montes'>
-                    <img src={LinkedInIcon} height="50"/>
+                    <img className="iconImage" src={LinkedInIcon} height="50"/>
                 </Link>
                 </div>
                 <br />
@@ -25,10 +25,10 @@ const AboutPage = () => {
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/131702982?v=4' alt="Kenia Decoteau's profile picture" height='200' width='200' />
                 <p>✨I am a Pursuit fellow future Software Developer I find joy in sharing my knowledge with others that may lack the resources .✨</p>
                 <Link to='https://github.com/KeniaD1'>
-                <img src={GithubIcon} height="50"/>
+                <img className="iconImage" src={GithubIcon} height="50"/>
                 </Link>
                 <Link to='https://www.linkedin.com/in/kenia-decoteau/'>
-                <img src={LinkedInIcon} height="50"/>
+                <img className="iconImage" src={LinkedInIcon} height="50"/>
                 </Link>
                 </div>
                 <br />
@@ -37,10 +37,10 @@ const AboutPage = () => {
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/127881507?v=4' alt="Natyka Callwood's profile picture" height='200' width='200' />
                 <p>✨Software engineer student studying at Pursuit. My dream is to take my new skills and help improve our daily lives.✨</p>
                 <Link to='https://github.com/NatykaC'>
-                <img src={GithubIcon} height="50"/>
+                <img className="iconImage" src={GithubIcon} height="50"/>
                 </Link>
                 <Link to='https://www.linkedin.com/in/natykajcallwood'>
-                <img src={LinkedInIcon} height="50"/>
+                <img className="iconImage" src={LinkedInIcon} height="50"/>
                 </Link>
                 </div>
                 <br />
@@ -49,10 +49,10 @@ const AboutPage = () => {
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/127880951?v=4' alt="Oscar Quintanilla's profile picture" height='200' width='200' />
                 <p>✨Software engineer student looking to significantly progress my skills in coding and obtain a position in tech.✨</p>
                 <Link to='https://github.com/OscarQ5'>
-                <img src={GithubIcon} height="50"/>
+                <img className="iconImage" src={GithubIcon} height="50"/>
                 </Link>
                 <Link to='https://www.linkedin.com/in/oscarquintanilla5'>
-                <img src={LinkedInIcon} height="50"/>
+                <img className="iconImage" src={LinkedInIcon} height="50"/>
                 </Link>
                 </div>
                 <br />
