@@ -21,10 +21,10 @@ function Header(){
   <div className="dropdown-menu">
 
 
-    <a className="dropdown-item" href="/">Home</a>
-    <a className="dropdown-item" href="/Profile">Profile</a>
-    <a className="dropdown-item" href="/">SignOut</a>
-    <a className="dropdown-item" href="/About">About</a>
+    <Link className="dropdown-item" to="/">Home</Link>
+    <Link className="dropdown-item" to="/Profile">Profile</Link>
+    <Link className="dropdown-item" to="/">SignOut</Link>
+    <Link className="dropdown-item" to="/About">About</Link>
 
   </div>
 </div>
