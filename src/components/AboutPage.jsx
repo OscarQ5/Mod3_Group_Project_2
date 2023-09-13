@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import './AboutPage.css'
+import LinkedInIcon from "../assets/03A36429-DFDE-4BC9-8CE8-847D28A5F623.png" 
 
 const AboutPage = () => {
     return (
@@ -11,10 +12,10 @@ const AboutPage = () => {
                 <img id='profile-images' src='https://avatars.githubusercontent.com/u/129802356?v=4' alt="Jeremy Montes' profile picture" height='200' width='200' />
                 <p>✨Lifesaver, musician, gamer, and early career software engineer seeking optimal solutions to complex problems.✨</p>
                 <Link to='https://github.com/JBMontes'>
-                   <img src="../../public/5201D372-43A2-4466-A37B-AC9889C73C0D.png" height="50"/>
+                   <img src="public/5201D372-43A2-4466-A37B-AC9889C73C0D.png" height="50"/>
                 </Link>
                 <Link to='https://www.linkedin.com/in/jeremy-b-montes'>
-                    <img src="public/03A36429-DFDE-4BC9-8CE8-847D28A5F623.png" height="50"/>
+                    <img src={LinkedInIcon} height="50"/>
                 </Link>
                 </div>
                 <br />
@@ -26,7 +27,7 @@ const AboutPage = () => {
                 <img src="public/5201D372-43A2-4466-A37B-AC9889C73C0D.png" height="50"/>
                 </Link>
                 <Link to='https://www.linkedin.com/in/kenia-decoteau/'>
-                <img src="public/03A36429-DFDE-4BC9-8CE8-847D28A5F623.png" height="50"/>
+                <img src={LinkedInIcon} height="50"/>
                 </Link>
                 </div>
                 <br />
@@ -38,7 +39,7 @@ const AboutPage = () => {
                 <img src="public/5201D372-43A2-4466-A37B-AC9889C73C0D.png" height="50"/>
                 </Link>
                 <Link to='https://www.linkedin.com/in/natykajcallwood'>
-                <img src="public/03A36429-DFDE-4BC9-8CE8-847D28A5F623.png" height="50"/>
+                <img src={LinkedInIcon} height="50"/>
                 </Link>
                 </div>
                 <br />
@@ -50,7 +51,7 @@ const AboutPage = () => {
                 <img src="public/5201D372-43A2-4466-A37B-AC9889C73C0D.png" height="50"/>
                 </Link>
                 <Link to='https://www.linkedin.com/in/oscarquintanilla5'>
-                <img src="public/03A36429-DFDE-4BC9-8CE8-847D28A5F623.png" height="50"/>
+                <img src={LinkedInIcon} height="50"/>
                 </Link>
                 </div>
                 <br />
