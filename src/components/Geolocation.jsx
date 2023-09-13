@@ -24,7 +24,7 @@ const Geolocation = () => {
     useEffect(() => { getUserLocation() }, []);
 
     const getAddressFromCoordinates = (lat, lng) => {
-        const apiKey = "prj_live_sk_40643c832a171cb168589897f0dca825b1301ed1";
+        const apiKey = import.meta.env.VITE_RADAR_API_KEY
         const apiUrl = `https://api.radar.io/v1/geocode/reverse?coordinates=${lat},${lng}`;
 
         fetch(apiUrl, {
