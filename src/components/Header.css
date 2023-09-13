@@ -18,6 +18,8 @@
         width:100%;
         background-color: rgb(230, 230, 230);
       
-        position:relative;
-        top: -55px
+        /* position:fixed;
+        top: -15px;
+        left: 420px; */
+
 }

@@ -72,3 +72,78 @@ body{
        background-image: url("https://myimprov.com/wp-content/uploads/NYCParking.png");
         background-size: cover;
 }
+
+@media(min-width: 320px) and (max-width: 480px) {
+ .header-nav  {
+ 
+    position: relative;
+    left: -49px;
+    padding: 2px;
+    margin: 2px;
+    height:75px;
+  }
+
+  .header-nav h1{
+    width: 100%;
+    font-size: 20px;
+    font-family:monospace;
+    font-weight:bold ;
+  }
+
+  .geolocation{
+    position:relative;
+    left: -20px;
+  }
+
+  .aboutPage{
+
+    display:flex;
+    flex-wrap: wrap;
+    position: relative;
+    left: -20px;
+    border-radius: 60px;
+  }
+
+  .signUp{
+
+ position:relative;
+ left: 15px;
+ 
+      }  
+}
+
+@media(min-width: 768px) and (max-width: 1024px) {
+
+ .signUp{
+
+ position:relative;
+ left: 30px;
+      }  
+
+      .header-nav h1{
+        font-weight: bold;
+      }
+
+ .header-nav{
+
+  position: relative;
+  left:-39px;
+      }
+      .aboutPage{
+
+        display:flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        position: relative;
+        left: -20px;
+        border-radius: 60px;
+        width: 800px;
+      }
+
+      .geolocation{
+        position:relative;
+        left: -20px;
+      }
+
+}
+
