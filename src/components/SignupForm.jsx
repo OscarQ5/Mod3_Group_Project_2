@@ -26,62 +26,64 @@ const SignUpForm = () => {
 
 
     return (
+        <>
+            <div className='signUp'>
+                <form>
 
-        <div className='signUp'>
+                    <h2> Sign Up Form</h2>
+                    <label> Name</label>
+                    <br />
+                    <input
+                        type="text"
 
-            <h2> Sign Up Form</h2>
-            <label> Name</label>
-            <br />
-            <input
-                type="text"
+                        placeholder='Enter Name'
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        required
+                    />
+                    <br />
+                    <label> Make / Model</label>
+                    <br />
+                    <input
+                        type="text"
+                        placeholder='Enter Make/Model'
+                        value={makeModel}
+                        onChange={(event) => setMakeModel(event.target.value)}
+                        required
+                    />
+                    <br />
+                    <label> Car Type / Size </label>
+                    <br />
+                    <input
+                        type='text'
+                        placeholder='Enter Car Type/ Size'
+                        value={carType}
+                        onChange={(event) => setCarType(event.target.value)}
+                        required
+                    />
+                    <br />
 
-                placeholder='Enter Name'
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-            />
-            <br />
-            <label> Make / Model</label>
-            <br />
-            <input
-                type="text"
-                placeholder='Enter Make/Model'
-                value={makeModel}
-                onChange={(event) => setMakeModel(event.target.value)}
-                required
-            />
-            <br />
-            <label> Car Type / Size </label>
-            <br />
-            <input
-                type='text'
-                placeholder='Enter Car Type/ Size'
-                value={carType}
-                onChange={(event) => setCarType(event.target.value)}
-                required
-            />
-            <br />
+                    <h2>BackGround Check</h2>
+                    <p> Enter Picture of Indentification</p>
 
-            <h2>BackGround Check</h2>
-            <p> Enter Picture of Indentification</p>
+                    <input type="file" onChange={handleUserSubmit}
+                        required
+                    />
 
-            <input type="file" onChange={handleUserSubmit}
-                required
-            />
+                    <br />
+                    <button type='submit' className="btn"> SignUp/Login</button>
+                </form>
 
-            <br />
-            <button type='submit' className="btn"> SignUp/Login</button>
-
-
+            </div>
 
             <div className='formResults'>
                 <h2> {name}</h2>
                 <h2> {makeModel}</h2>
                 <h2> {carType}</h2>
-                <img src= {file}/>
+                <img src={file} />
             </div>
 
-        </div>
+        </>
 
 
     )
