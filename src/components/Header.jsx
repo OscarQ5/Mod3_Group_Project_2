@@ -3,7 +3,10 @@ import AboutPage from "./AboutPage"
 import "./Header.css"
 
 
-function Header(){
+function Header({isAuthenticated}){
+    const signOut = () => {
+      setIsAuthenticated(false)
+    }
 
     return(
 
@@ -14,18 +17,17 @@ function Header(){
 <h1> Take My Parking</h1>
 
 
-<div class="dropdown">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+<div className="dropdown">
+  <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
     Menu
   </button>
-  <div class="dropdown-menu">
+  <div className="dropdown-menu">
 
 
-    <a class="dropdown-item" href="/">Home</a>
-    <a class="dropdown-item" href="/Profile">Profile</a>
-    <a class="dropdown-item" href="/">SignOut</a>
-    <a class="dropdown-item" href="/About">About</a>
- 
+  {!isAuthenticated && <Link className="dropdown-item" to="/">Home</Link>}
+    {isAuthenticated && <Link className="dropdown-item" to="/Profile">Profile</Link>}
+    <Link className="dropdown-item" to="/" onClick={signOut}>SignOut</Link>
+    <Link className="dropdown-item" to="/About">About</Link>
 
   </div>
 </div>

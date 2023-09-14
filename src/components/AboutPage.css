@@ -1,14 +1,53 @@
 #profile-images {
     border: 3px solid black;
+    border-radius: 80px;
+    padding: 10px;
+    gap: 10px;
 }
 
 .aboutPage{
     display: flex;
     flex-direction: row;
-   
+    
     justify-content: space-between;
     align-items: center;
     border: 2px solid black;
+    border-radius: 55px;
     background-color: blanchedalmond;
+    padding: 30px;
+    margin: 35px;
+    gap:20px;
+    animation-name: identifier;
+    animation-duration: 4s;
 
+}
+
+img:hover{
+    background-color: red;
+}
+
+.iconImage:hover{
+
+    border-radius: 90px;
+    border: 1px solid red
+}
+
+.team p{
+    padding:10px;
+   
+}
+
+@keyframes identifier {
+    from {
+        opacity: -1;
+    }
+    to {
+        opacity: none;
+    }
+}
+
+footer{
+    font-weight: bold;
+    font-size: xx-large;
+    color:white
 }

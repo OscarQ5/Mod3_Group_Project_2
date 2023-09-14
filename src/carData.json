@@ -1,0 +1,65 @@
+[
+    {
+        "model": "Jeep",
+        "carType": "SUV",
+        "image": "src/assets/SUV.jpeg",
+        "color": "Black"
+
+    },
+    {
+        "model": "Honda",
+        "carType": "Hatchback",
+        "image": "src/assets/HatchBack.jpeg",
+        "color": "Blue"
+
+    },
+    {
+        "model": "Audi",
+        "carType": "Sedan",
+        "image": "src/assets/Sedan.jpeg",
+        "color": "Red"
+
+    },
+    {
+        "model": "Mini Cooper",
+        "carType": "Smart Car",
+        "image": "src/assets/Smart-Car-Green.jpeg",
+        "color": "Green"
+
+    },
+    {
+        "model": "BMW",
+        "carType": "Coupe",
+        "image": "src/assets/Coupe.jpeg",
+        "color": "White"
+
+    },
+    {
+        "model": "Ford",
+        "carType": "Truck",
+        "image": "src/assets/Blue-Truck.jpeg",
+        "color": "Gray"
+
+    },
+    {
+        "model": "Safari",
+        "carType": "Van",
+        "image": "src/assets/Red-Van.jpeg",
+        "color": "Red"
+
+    },
+    {
+        "model": "Mercedes-Benz",
+        "carType": "Convertable",
+        "image": "src/assets/Convertible.jpeg",
+        "color": "Dark Gray"
+
+    },
+    {
+        "model": "Ferrari",
+        "carType": "Sports-Car",
+        "image": "src/assets/Sports-Car.jpeg",
+        "color": "Yellow"
+
+    }
+]
