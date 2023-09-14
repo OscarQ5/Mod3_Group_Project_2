@@ -25,7 +25,7 @@ function Header({isAuthenticated}){
 
 
   {!isAuthenticated && <Link className="dropdown-item" to="/">Home</Link>}
-    <Link className="dropdown-item" to="/Profile">Profile</Link>
+    {isAuthenticated && <Link className="dropdown-item" to="/Profile">Profile</Link>}
     <Link className="dropdown-item" to="/" onClick={signOut}>SignOut</Link>
     <Link className="dropdown-item" to="/About">About</Link>
 
