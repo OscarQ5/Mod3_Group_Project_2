@@ -79,42 +79,42 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
                     <input
                         type="text"
 
-                placeholder='Enter Name'
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-            />
-            <br />
-            <label> Make / Model</label>
-            <br />
-            <input
-                type="text"
-                placeholder='Enter Make/Model'
-                value={makeModel}
-                onChange={(event) => setMakeModel(event.target.value)}
-                required
-            />
-            <br />
-            <label> Car Type / Size </label>
-            <br />
-            <input
-                type='text'
-                placeholder='Enter Car Type/ Size'
-                value={carType}
-                onChange={(event) => setCarType(event.target.value)}
-                required
-            />
-            <br />
-            <label> Car Color </label>
-            <br />
-            <input
-                type='text'
-                placeholder='Enter Car Color'
-                value={carColor}
-                onChange={(event) => setCarColor(event.target.value)}
-                required
-            />
-            <br />
+                        placeholder='Enter Name'
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        required
+                    />
+                    <br />
+                    <label> Make / Model</label>
+                    <br />
+                    <input
+                        type="text"
+                        placeholder='Enter Make/Model'
+                        value={makeModel}
+                        onChange={(event) => setMakeModel(event.target.value)}
+                        required
+                    />
+                    <br />
+                    <label> Car Type / Size </label>
+                    <br />
+                    <input
+                        type='text'
+                        placeholder='Enter Car Type/ Size'
+                        value={carType}
+                        onChange={(event) => setCarType(event.target.value)}
+                        required
+                    />
+                    <br />
+                    <label> Car Color </label>
+                    <br />
+                    <input
+                        type='text'
+                        placeholder='Enter Car Color'
+                        value={carColor}
+                        onChange={(event) => setCarColor(event.target.value)}
+                        required
+                    />
+                    <br />
 
                     <h2>BackGround Check</h2>
                     <p> Enter Picture of Indentification</p>
@@ -123,9 +123,9 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
                         required
                     />
 
-            <br />
-            <button type='submit' className="btn"> SignUp/Login</button>
-
+                    <br />
+                    <button type='submit' className="btn"> SignUp/Login</button>
+                </form>
             </div>
 
             <div className='formResults'>
