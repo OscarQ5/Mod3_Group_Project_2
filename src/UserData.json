@@ -7,6 +7,11 @@
         "userLocations": {
             "latitude": 40.74302101309027, 
             "longitude": -73.94192135643361
+        },
+        "car": {
+            "model": "Honda",
+            "carType": "Sedan",
+            "color": "Grey"
         }
     },
     {
@@ -27,6 +32,11 @@
         "userLocations": {
             "latitude": 40.75824543912744, 
             "longitude":  -73.92479662247483
+        },
+        "car": {
+            "model": "Jeep",
+            "carType": "SUV",
+            "color": "Grey"
         }
     },
     {
