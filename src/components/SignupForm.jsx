@@ -55,7 +55,7 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
                 alert("Please fill out all required fields.")
             }
         } else {
-            const user = userData.find((user) => user.username === username && user.password === password);
+            const user = userData.users.find((user) => user.username === username && user.password === password);
             if (user) {
                 setIsAuthenticated(true);
                 setUserData(user)
