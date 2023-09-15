@@ -15,7 +15,22 @@ button{
     margin:10px;
 }
 
-button:hover{
-    background-color: rgb(25, 109, 4);
-    color:black
+.selectButton:hover{
+    background-color: rgb(29, 128, 4);
+    color:black;
+    border: 2px solid  black
+
+}
+
+.button-options:hover{
+    background-color:yellow;
+    color:black;
+    border:2px solid black;
+}
+
+.availableSpot:hover{
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 45px;
+
 }

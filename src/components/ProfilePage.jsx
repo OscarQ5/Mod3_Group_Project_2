@@ -6,6 +6,11 @@ const ProfilePage = ({ user }) => {
     const [address, setAddress] = useState("");
     const [parkingQueue, setParkingQueue] = useState([]);
     const [accountAddress, setAccountAddress] = useState("")
+    const [parkingOptions, setParkingOptions] = useState(null)
+    const [savedAdd,setSavedAdd] = useState("Saved Address:")
+    // const [currAdd,setCurrAdd] = useState("Current Address:")
+    const [availablityQueue, setAvailabilityQueue] = useState([])
+
 
     const getUserLocation = () => {
         if ('geolocation' in navigator) {
@@ -98,12 +103,33 @@ const ProfilePage = ({ user }) => {
         // Update state to reflect the matched users
     };
 
+
+    const TakeParkingOptions = () => {
+        return(
+            <div className="parking-options">
+            <h3>Choose Parking Location:</h3>
+            <button className="button-options" onClick={()=>{
+                setAccountAddress(""),
+                setSavedAdd(""),
+                setAvailabilityQueue([...availablityQueue, address])
+            }}> Current Location</button>
+
+            <button className="button-options" onClick={()=>(
+                setAddress(""),
+                setSavedAdd("Saved Address:"),
+                setAvailabilityQueue([...availablityQueue, accountAddress])
+                
+
+            )}> Saved Location</button>
+            </div>
+        )
+    }
     return (
         <div className="geolocation">
             {user && (
                 <div>
                     <h2>Welcome, {user.name}!</h2><br />
-                    <h3>Saved Address:</h3>
+                    <h3>{savedAdd}</h3>
                     <p>{accountAddress}</p>
                     <p>{user.car.model}</p>
                     <p>{user.car.carType}</p>
@@ -119,8 +145,12 @@ const ProfilePage = ({ user }) => {
                         </div>
                     )}
                     <div className="buttons">
-                        <button onClick={handleTakeParking}>Take My Parking</button>
-                        <button onClick={handleGiveParking}>Give Parking</button>
+                        <button className="selectButton" onClick={()=>{handleTakeParking, setParkingOptions(TakeParkingOptions)}}>Take My Parking</button>
+                        <button className="selectButton" onClick={handleGiveParking}>Give Me Parking</button>
+                        <br/>
+                        {parkingOptions}
+                        <br/>
+                       <p className="availableSpot">{availablityQueue}</p> 
                     </div>
                 </div>
             ) : (
