@@ -10,9 +10,10 @@
                 "longitude": -73.94192135643361
             },
             "car": {
-                "model": "Honda",
-                "carType": "Sedan",
-                "color": "Grey"
+                "model": "BMW",
+                "color": "White",
+                "carType": "Coupe",
+                "image": "src/assets/Coupe.jpeg"
             }
         },
         {
@@ -23,6 +24,13 @@
             "userLocations": {
                 "latitude": 40.74056253607809,
                 "longitude": -73.93854341635132
+            },
+            "car":{
+                "model": "Mini Cooper",
+                "carType": "Smart Car",
+                "image": "src/assets/Smart-Car-Green.jpeg",
+                "color": "Green"
+    
             }
         },
         {
@@ -36,8 +44,9 @@
             },
             "car": {
                 "model": "Jeep",
+                "color": "Black",
                 "carType": "SUV",
-                "color": "Grey"
+                "image": "src/assets/SUV.jpeg"
             }
         },
         {
@@ -48,6 +57,12 @@
             "userLocations": {
                 "latitude": 40.74958506236718,
                 "longitude": -73.97124081542268
+            },
+            "car":{
+                "model": "Audi",
+                "color": "Red",
+                "carType": "Sedan",
+                "image": "src/assets/Sedan.jpeg"
             }
         }
     ]
