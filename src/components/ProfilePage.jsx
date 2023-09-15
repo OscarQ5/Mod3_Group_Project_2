@@ -106,8 +106,9 @@ const ProfilePage = ({ user }) => {
                     <h3>Saved Address:</h3>
                     <p>{accountAddress}</p>
                     <p>{user.car.model}</p>
-                    <p>{user.car.carType}</p>
                     <p>{user.car.color}</p>
+                    <p>{user.car.carType}</p>
+                    <img src={user.car.image} height="100"/>
                 </div>
             )}
             {userLocation ? (
