@@ -26,7 +26,7 @@
                 "longitude": -73.93854341635132
             },
             "car":{
-                "model": "Mini Cooper",
+                "model": "Punch Buggy",
                 "carType": "Smart Car",
                 "image": "src/assets/Smart-Car-Green.jpeg",
                 "color": "Green"
@@ -63,6 +63,106 @@
                 "color": "Red",
                 "carType": "Sedan",
                 "image": "src/assets/Sedan.jpeg"
+            }
+        },
+        {
+            "id": 5,
+            "name": "tim Doe",
+            "username": "tim_doe",
+            "password": "024",
+            "userLocations": {
+                "latitude":40.73999057114006, 
+                "longitude": -73.92984029112863
+            },
+            "car":{
+                "model": "Mercedes-Benz",
+            "carType": "Convertable",
+            "image": "src/assets/Convertible.jpeg",
+            "color": "Dark Gray"
+            }
+        },
+        {
+            "id": 6,
+            "name": "Sam Doe",
+            "username": "sam_doe",
+            "password": "246",
+            "userLocations": {
+                "latitude": 40.76185806443809, 
+                "longitude": -73.94143482240442
+            },
+            "car":{
+                "model": "Ferrari",
+                "carType": "Sports-Car",
+                "image": "src/assets/Sports-Car.jpeg",
+                "color": "Yellow"
+            }
+        },
+        {
+            "id": 7,
+            "name": "Oscar Doe",
+            "username": "oscar_doe",
+            "password": "369",
+            "userLocations": {
+                "latitude": 40.740419335358446, 
+                "longitude": -73.93979228626289
+                
+            },
+            "car":{
+                "model": "Safari",
+                "carType": "Van",
+                "image": "src/assets/Red-Van.jpeg",
+                "color": "Red"
+            }
+        },
+        {
+            "id": 8,
+            "name": "Kenia Doe",
+            "username": "kenia_doe",
+            "password": "510",
+            "userLocations": {
+                "latitude":  40.74461666891544, 
+                "longitude": -73.93926405560133
+            },
+            "car":{
+                "model": "Ford",
+                "carType": "Truck",
+                "image": "src/assets/Blue-Truck.jpeg",
+                "color": "Gray"
+            }
+        },
+        {
+            "id": 9,
+            "name": "Nat Doe",
+            "username": "nat_doe",
+            "password": "468",
+            "userLocations": {
+                "latitude": 40.75086284838045, 
+                "longitude":-73.94492294648794
+
+                
+            },
+            "car":{
+                "model": "Mini Cooper",
+                "carType": "Smart Car",
+                "image": "src/assets/Smart-Car-Green.jpeg",
+                "color": "Green"
+            }
+        },
+        {
+            "id": 10,
+            "name": "Jay Doe",
+            "username": "jay_doe",
+            "password": "810",
+            "userLocations": {
+                "latitude": 40.78222563413667, 
+                "longitude": -74.02389642449971
+                
+            },
+            "car":{
+                "model": "BMW",
+                "carType": "Coupe",
+                "image": "src/assets/Coupe.jpeg",
+                "color": "White"
             }
         }
     ]
