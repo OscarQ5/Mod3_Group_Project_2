@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import "./SignUpForm.css"
 import userData from "../UserData.json"
 import { useNavigate } from "react-router-dom"
+// import { event } from 'jquery';
 
 const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
 
@@ -13,7 +14,7 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
 
     const [name, setName] = useState("")
     const [makeModel, setMakeModel] = useState("")
-    const [carType, setCarType] = useState("")
+    const [carType, setCarType] = useState("SUV")
     const [carColor, setCarColor] = useState("")
     const [file, setFile] = useState();
 
@@ -26,6 +27,7 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
 
         console.log(event.target.files);
         setFile(URL.createObjectURL(event.target.files[0]));
+
     }
 
     const submitForm = (event) => {
@@ -69,73 +71,105 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
 
 
     return (
-        <>
-            <div className='signUp'>
-                <form>
 
-                    <h2> Sign Up Form</h2>
-                    <label> Name</label>
-                    <br />
-                    <input
-                        type="text"
+        <div className='signUp'>
 
-                        placeholder='Enter Name'
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                        required
-                    />
-                    <br />
-                    <label> Make / Model</label>
-                    <br />
-                    <input
-                        type="text"
-                        placeholder='Enter Make/Model'
-                        value={makeModel}
-                        onChange={(event) => setMakeModel(event.target.value)}
-                        required
-                    />
-                    <br />
-                    <label> Car Type / Size </label>
-                    <br />
-                    <input
-                        type='text'
-                        placeholder='Enter Car Type/ Size'
-                        value={carType}
-                        onChange={(event) => setCarType(event.target.value)}
-                        required
-                    />
-                    <br />
-                    <label> Car Color </label>
-                    <br />
-                    <input
-                        type='text'
-                        placeholder='Enter Car Color'
-                        value={carColor}
-                        onChange={(event) => setCarColor(event.target.value)}
-                        required
-                    />
-                    <br />
+            <h2> Sign Up Form</h2>
+            <label> Name</label>
+            <br />
+            <input
+                type="text"
 
-                    <h2>BackGround Check</h2>
-                    <p> Enter Picture of Indentification</p>
+                placeholder='Enter Name'
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                required
+            />
+            <br />
+            <label> Make / Model</label>
+            <br />
+            <input
+                type="text"
+                placeholder='Enter Make/Model'
+                value={makeModel}
+                onChange={(event) => setMakeModel(event.target.value)}
+                required
+            />
+            <br />
+            <label> Car Type / Size </label>
+            <br />
+            <select value={carType} onChange={(event) => setCarType(event.target.value)}>
+                <option value='SUV' >SUV</option>
+                <option value="HatchBack" >Hatchback</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Truck" >Truck</option>
+                <option value="Coupe" >Coupe</option>
+                <option value="Smart Car" >Smart Car</option>
+                <option value="Van">Van</option>
+                <option value="Convertible">Convertible</option>
+                <option value="Sports Car " >SportsCar</option>
+            </select>
 
-                    <input type="file" onChange={handleUserSubmit}
-                        required
-                    />
 
-                    <br />
-                    <button type='submit' className="btn"> SignUp/Login</button>
-                </form>
-            </div>
+
+
+
+
+            <br />
+            <label> Car Color </label>
+            <br />
+            <input
+                type='text'
+                placeholder='Enter Car Color'
+                value={carColor}
+                onChange={(event) => setCarColor(event.target.value)}
+                required
+            />
+            <br />
+
+            <h2>BackGround Check</h2>
+            <p> Enter Picture of Indentification</p>
+
+            <input type="file" onChange={handleUserSubmit}
+                required
+            />
+
+            <br />
+            <label>Username</label>
+            <br />
+            <input
+                type="text"
+                placeholder='Enter Username'
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                required
+            />
+            <br />
+            <label>Password</label>
+            <br />
+            <input
+                type="password"
+                placeholder='Enter Password'
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+            />
+            <br />
+            <button type='submit' className="btn" onClick={submitForm}>{signUp ? "Sign Up" : "Login"}</button>
+            <button type='submit' className="btn" onClick={() => setSignUp((prevSignUp) => !prevSignUp)}>
+                {signUp ? 'Switch to Login' : 'Switch to Sign Up'}
+            </button>
+
+
 
             <div className='formResults'>
                 <h2> {name}</h2>
                 <h2> {makeModel}</h2>
-                <h2> {carType}</h2>
+                {<h2> {carType}</h2>}
                 <img src={file} />
             </div>
 
-        </>
+        </div>
 
 
     )
