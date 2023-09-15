@@ -7,6 +7,9 @@ const ProfilePage = ({ user }) => {
     const [parkingQueue, setParkingQueue] = useState([]);
     const [accountAddress, setAccountAddress] = useState("")
 
+    const [acceptedRequest, setAcceptedRequest] = useState(null)
+    const [notificationTimer, setNotificationTimer] = useState(null)
+
     const getUserLocation = () => {
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
@@ -23,8 +26,8 @@ const ProfilePage = ({ user }) => {
     }
 
     useEffect(() => {
-        getUserLocation() 
-        if(user){
+        getUserLocation()
+        if (user) {
             getAccountAddress()
         }
     }, [user]);
@@ -52,31 +55,40 @@ const ProfilePage = ({ user }) => {
     };
 
     const getAccountAddress = () => {
-        const apiKey = import.meta.env.VITE_RADAR_API_KEY
-        const apiUrl = `https://api.radar.io/v1/geocode/reverse?coordinates=${user.userLocations.latitude},${user.userLocations.longitude}`;
+        if (user && user.userLocations) {
+            const { latitude, longitude } = user.userLocations
+            const apiKey = import.meta.env.VITE_RADAR_API_KEY
+            const apiUrl = `https://api.radar.io/v1/geocode/reverse?coordinates=${latitude},${longitude}`;
 
-        fetch(apiUrl, {
-            method: "GET",
-            headers: {
-                Authorization: `${apiKey}`,
-            },
-        })
-            .then(r => r.json())
-            .then((data) => {
-                if (data.addresses && data.addresses.length > 0) {
-                    const formattedAddress = data.addresses[0].formattedAddress;
-                    setAccountAddress(formattedAddress)
-                } else {
-                    console.error("No address data found")
-                }
+            fetch(apiUrl, {
+                method: "GET",
+                headers: {
+                    Authorization: `${apiKey}`,
+                },
             })
-            .catch(err => console.error(err));
+                .then(r => r.json())
+                .then((data) => {
+                    if (data.addresses && data.addresses.length > 0) {
+                        const formattedAddress = data.addresses[0].formattedAddress;
+                        setAccountAddress(formattedAddress)
+                    } else {
+                        console.error("No address data found")
+                    }
+                })
+                .catch(err => console.error(err));
+        }
     }
 
     const handleTakeParking = () => {
         console.log('Take My Parking clicked')
         if (userLocation) {
-            setParkingQueue([...parkingQueue, { location: userLocation, action: 'take' }]);
+            const request = { user, location: userLocation }
+            setParkingQueue([...parkingQueue, request]);
+            const nearbyParking = findMatchingParking(userLocation);
+            if (nearbyParking) {
+                setAcceptedRequest(nearbyParking);
+                startNotificationTimer();
+            }
         } else {
             console.log('User location not available.');
         }
@@ -92,10 +104,40 @@ const ProfilePage = ({ user }) => {
         }
     };
 
-    const findMatchingParking = () => {
-        // Implement logic to find matching parking based on user locations
-        // Calculate distances and filter the parkingQueue to find matches
-        // Update state to reflect the matched users
+    const findMatchingParking = (userLocation) => {
+        // Find nearby parking spots here
+        // Calculate distances and return the nearest available parking spot
+        // If no parking is available, return null
+
+        //Dummy parking spot
+        const nearbyParking = {
+            user: { name: 'Dummy User' },
+            location: { lat: 0, lng: 0 },
+        };
+
+        if (nearbyParking) {
+            return nearbyParking;
+        } else {
+            return null;
+        }
+    };
+
+    const handleAcceptRequest = (request) => {
+        setAcceptedRequest(request);
+        setNotificationTimer(null);
+        //Notify the other user
+
+        const updatedQueue = parkingQueue.filter((item) => item !== request);
+        setParkingQueue(updatedQueue);
+    };
+
+    const startNotificationTimer = () => {
+        if (acceptedRequest) {
+            const timer = setTimeout(() => {
+                handleAcceptRequest();
+            }, 300000); // 5 minutes in milliseconds
+            setNotificationTimer(timer);
+        }
     };
 
     return (
@@ -125,6 +167,32 @@ const ProfilePage = ({ user }) => {
                 </div>
             ) : (
                 <p>Fetching location...</p>
+            )}
+            <div>
+                <h2>Parking Requests</h2>
+                {parkingQueue.map((request, index) => (
+                    <div key={index}>
+                        <p>Request from {request.user.name}</p>
+                        {acceptedRequest === request ? (
+                            <div>
+                                <button onClick={handleAcceptRequest}>Accept</button>
+                                <button>Decline</button>
+                            </div>
+                        ) : (
+                            <div>
+                                <button disabled>Accept</button>
+                                <button disabled>Decline</button>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+            {acceptedRequest && (
+                <div>
+                    <h2>Accepted Request</h2>
+                    <p>{acceptedRequest.user.name} accepted your parking request.</p>
+                    <p>Time left: {Math.ceil((notificationTimer - Date.now()) / 1000 / 60)} minutes</p>
+                </div>
             )}
         </div>
     )
