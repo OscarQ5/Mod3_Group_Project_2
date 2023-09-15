@@ -7,7 +7,7 @@ const ProfilePage = ({ user }) => {
     const [parkingQueue, setParkingQueue] = useState([]);
     const [accountAddress, setAccountAddress] = useState("")
     const [parkingOptions, setParkingOptions] = useState(null)
-    const [savedAdd,setSavedAdd] = useState("Saved Address:")
+    const [savedAdd, setSavedAdd] = useState("Saved Address:")
     // const [currAdd,setCurrAdd] = useState("Current Address:")
     const [availablityQueue, setAvailabilityQueue] = useState([])
 
@@ -84,7 +84,7 @@ const ProfilePage = ({ user }) => {
         }
     }
 
-    const handleTakeParking = () => {
+    const handleTakeParking = (userLocation) => {
         console.log('Take My Parking clicked')
         if (userLocation) {
             const request = { user, location: userLocation }
@@ -147,22 +147,22 @@ const ProfilePage = ({ user }) => {
 
 
     const TakeParkingOptions = () => {
-        return(
+        return (
             <div className="parking-options">
-            <h3>Choose Parking Location:</h3>
-            <button className="button-options" onClick={()=>{
-                setAccountAddress(""),
-                setSavedAdd(""),
-                setAvailabilityQueue([...availablityQueue, address])
-            }}> Current Location</button>
+                <h3>Choose Parking Location:</h3>
+                <button className="button-options" onClick={() => {
+                    handleTakeParking(address)
+                    setAccountAddress("")
+                    setSavedAdd("")
+                    setAvailabilityQueue([...availablityQueue, address])
+                }}> Current Location</button>
 
-            <button className="button-options" onClick={()=>(
-                setAddress(""),
-                setSavedAdd("Saved Address:"),
-                setAvailabilityQueue([...availablityQueue, accountAddress])
-                
-
-            )}> Saved Location</button>
+                <button className="button-options" onClick={() => {
+                    handleTakeParking(accountAddress)
+                    setAddress("")
+                    setSavedAdd("Saved Address:")
+                    setAvailabilityQueue([...availablityQueue, accountAddress])
+                }}> Saved Location</button>
             </div>
         )
     }
@@ -176,7 +176,7 @@ const ProfilePage = ({ user }) => {
                     <p>{user.car.model}</p>
                     <p>{user.car.color}</p>
                     <p>{user.car.carType}</p>
-                    <img src={user.car.image} height="100"/>
+                    <img src={user.car.image} height="100" />
                 </div>
             )}
             {userLocation ? (
@@ -188,12 +188,12 @@ const ProfilePage = ({ user }) => {
                         </div>
                     )}
                     <div className="buttons">
-                        <button className="selectButton" onClick={()=>{handleTakeParking, setParkingOptions(TakeParkingOptions)}}>Take My Parking</button>
+                        <button className="selectButton" onClick={() => { setParkingOptions(TakeParkingOptions) }}>Take My Parking</button>
                         <button className="selectButton" onClick={handleGiveParking}>Give Me Parking</button>
-                        <br/>
+                        <br />
                         {parkingOptions}
-                        <br/>
-                       <p className="availableSpot">{availablityQueue}</p> 
+                        <br />
+                        <p className="availableSpot">{availablityQueue}</p>
                     </div>
                 </div>
             ) : (
@@ -207,12 +207,10 @@ const ProfilePage = ({ user }) => {
                         {acceptedRequest === request ? (
                             <div>
                                 <button onClick={handleAcceptRequest}>Accept</button>
-                                <button>Decline</button>
                             </div>
                         ) : (
                             <div>
                                 <button disabled>Accept</button>
-                                <button disabled>Decline</button>
                             </div>
                         )}
                     </div>
