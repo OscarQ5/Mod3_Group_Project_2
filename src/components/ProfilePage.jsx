@@ -14,6 +14,7 @@ const ProfilePage = ({ user }) => {
 
     const [acceptedRequest, setAcceptedRequest] = useState(null)
     const [notificationTimer, setNotificationTimer] = useState(null)
+    const [counter, setCounter] = useState(null)
 
     const getUserLocation = () => {
         if ('geolocation' in navigator) {
@@ -36,6 +37,35 @@ const ProfilePage = ({ user }) => {
             getAccountAddress()
         }
     }, [user]);
+
+    useEffect(() => {
+
+        const startTimer = () => {
+            if (counter > 0) {
+                const timer = setInterval(() => {
+                    setCounter((prevCounter) => {
+                        if (prevCounter > 0) {
+                            return prevCounter - 1;
+                        } else {
+                            clearInterval(timer)
+                            return 0;
+                        }
+                    });
+                }, 1000);
+                return timer;
+            } else {
+                return null;
+            }
+        };
+
+        const timer = startTimer();
+
+        return () => {
+            if (timer) {
+                clearInterval(timer)
+            }
+        };
+    }, [counter])
 
     const getAddressFromCoordinates = (lat, lng) => {
         const apiKey = import.meta.env.VITE_RADAR_API_KEY
@@ -88,12 +118,8 @@ const ProfilePage = ({ user }) => {
         console.log('Take My Parking clicked')
         if (userLocation) {
             const request = { user, location: userLocation }
-            setParkingQueue([...parkingQueue, request]);
-            const nearbyParking = findMatchingParking(userLocation);
-            if (nearbyParking) {
-                setAcceptedRequest(nearbyParking);
-                startNotificationTimer();
-            }
+            setParkingQueue([...parkingQueue, request])
+            setCounter(300)
         } else {
             console.log('User location not available.');
         }
@@ -199,18 +225,18 @@ const ProfilePage = ({ user }) => {
             ) : (
                 <p>Fetching location...</p>
             )}
+            {counter && (
             <div>
                 <h2>Parking Requests</h2>
                 {parkingQueue.map((request, index) => (
                     <div className="acceptRequest" key={index}>
                         <div className="acceptRP"> 
                         <p>Request from {request.user.name}</p>
-                    
                         <p>{availablityQueue}</p>
                         </div>
-                        {acceptedRequest === request ? (
+                        {request ? (
                             <div>
-                                <button onClick={handleAcceptRequest}>Accept</button>
+                                <button onClick={() => handleAcceptRequest(request)}>Accept</button>
                             </div>
                         ) : (
                             <div>
@@ -220,11 +246,20 @@ const ProfilePage = ({ user }) => {
                     </div>
                 ))}
             </div>
+            )}
             {acceptedRequest && (
                 <div>
                     <h2>Accepted Request</h2>
                     <p>{acceptedRequest.user.name} accepted your parking request.</p>
-                    <p>Time left: {Math.ceil((notificationTimer - Date.now()) / 1000 / 60)} minutes</p>
+                    {counter > 0 ? (
+                        <p>
+                            Time left: {Math.floor(counter / 60)}:
+                            {counter % 60 < 10 ? "0" : ""}
+                            {counter % 60}
+                        </p>
+                    ) : (
+                        <p>Time has expired.</p>
+                    )}
                 </div>
             )}
         </div>
