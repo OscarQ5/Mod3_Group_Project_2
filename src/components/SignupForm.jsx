@@ -74,7 +74,7 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
 
         <div className='signUp'>
 
-            <h2> Sign Up Form</h2>
+            {/* <h2> Sign Up Form</h2>
             <label> Name</label>
             <br />
             <input
@@ -134,7 +134,7 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
                 required
             />
 
-            <br />
+            <br /> */}
             <label>Username</label>
             <br />
             <input
@@ -162,12 +162,12 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
 
 
 
-            <div className='formResults'>
+            {/* <div className='formResults'>
                 <h2> {name}</h2>
                 <h2> {makeModel}</h2>
                 {<h2> {carType}</h2>}
                 <img src={file} />
-            </div>
+            </div> */}
 
         </div>
 

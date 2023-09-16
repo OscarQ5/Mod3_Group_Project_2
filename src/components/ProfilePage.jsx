@@ -8,7 +8,6 @@ const ProfilePage = ({ user }) => {
     const [accountAddress, setAccountAddress] = useState("")
     const [parkingOptions, setParkingOptions] = useState(null)
     const [savedAdd, setSavedAdd] = useState("Saved Address:")
-    // const [currAdd,setCurrAdd] = useState("Current Address:")
     const [availablityQueue, setAvailabilityQueue] = useState([])
 
 
@@ -225,6 +224,7 @@ const ProfilePage = ({ user }) => {
             ) : (
                 <p>Fetching location...</p>
             )}
+            <div className='requests'>
             {counter && (
             <div>
                 <h2>Parking Requests</h2>
@@ -262,6 +262,7 @@ const ProfilePage = ({ user }) => {
                     )}
                 </div>
             )}
+            </div>
         </div>
     )
 }
