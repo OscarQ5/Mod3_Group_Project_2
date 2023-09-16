@@ -188,12 +188,12 @@ const ProfilePage = ({ user }) => {
                         </div>
                     )}
                     <div className="buttons">
-                        <button className="selectButton" onClick={() => { setParkingOptions(TakeParkingOptions) }}>Take My Parking</button>
-                        <button className="selectButton" onClick={handleGiveParking}>Give Me Parking</button>
-                        <br />
+                        <button className="selectButton" onClick={() => { setParkingOptions(TakeParkingOptions) }}>Get Parking</button>
+                        <button className="selectButton" onClick={handleGiveParking}>Take My Parking</button>
+                        {/* <br /> */}
                         {parkingOptions}
-                        <br />
-                        <p className="availableSpot">{availablityQueue}</p>
+                        {/* <br /> */}
+                        {/* <p className="availableSpot">{availablityQueue}</p> */}
                     </div>
                 </div>
             ) : (
@@ -202,8 +202,12 @@ const ProfilePage = ({ user }) => {
             <div>
                 <h2>Parking Requests</h2>
                 {parkingQueue.map((request, index) => (
-                    <div key={index}>
+                    <div className="acceptRequest" key={index}>
+                        <div className="acceptRP"> 
                         <p>Request from {request.user.name}</p>
+                    
+                        <p>{availablityQueue}</p>
+                        </div>
                         {acceptedRequest === request ? (
                             <div>
                                 <button onClick={handleAcceptRequest}>Accept</button>

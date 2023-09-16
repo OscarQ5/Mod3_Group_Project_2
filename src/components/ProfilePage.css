@@ -16,7 +16,7 @@ button{
 }
 
 .selectButton:hover{
-    background-color: rgb(29, 128, 4);
+    background-color: rgb(210, 5, 5);
     color:black;
     border: 2px solid  black
 
@@ -33,4 +33,44 @@ button{
     padding: 5px;
     border-radius: 45px;
 
+}
+
+.acceptRequest{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+}
+
+.acceptRequest button{
+  /* height:35px; */
+  color:white;
+  display: inline-block;
+  padding: 3px 3px;
+    /* display:flex;
+    justify-content: center;
+    align-items: center; */
+    margin-left:70px;
+
+}
+
+.acceptRequest button:hover{
+    background-color: rgb(8, 164, 8);
+    color:black;
+    border: 2px solid black;
+
+}
+
+.acceptRP{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+   align-items: start;
+    /* align-items: center; */
+}
+
+.acceptRequest:hover{
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    border-radius: 45px;;
 }
