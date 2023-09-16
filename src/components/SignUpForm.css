@@ -28,4 +28,6 @@ p{
   text-decoration: black;
   background-color: rgb(141, 108, 108);
   border:solid red ;
+  border-radius: 45px;
+  
 }
