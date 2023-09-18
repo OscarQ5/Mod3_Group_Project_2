@@ -1,10 +1,30 @@
 import React, { useState, useEffect } from 'react'
+import UserData from "../UserData.json"
 import "./ProfilePage.css"
+
+const generateDummyRequests = () => {
+    const dummyRequests = [];
+
+    for (const userData of UserData.users) {
+        const { userLocations, name } = userData;
+        if (userLocations) {
+            const { latitude, longitude } = userLocations;
+            const dummyRequest = {
+                user: { name },
+                location: { lat: latitude, lng: longitude },
+                action: Math.random() < 0.5 ? "Taking Parking" : "Giving Parking"
+            };
+            dummyRequests.push(dummyRequest);
+        }
+    }
+
+    return dummyRequests;
+}
 
 const ProfilePage = ({ user }) => {
     const [userLocation, setUserLocation] = useState(null);
     const [address, setAddress] = useState("");
-    const [parkingQueue, setParkingQueue] = useState([]);
+    const [parkingQueue, setParkingQueue] = useState(generateDummyRequests());
     const [accountAddress, setAccountAddress] = useState("")
     const [parkingOptions, setParkingOptions] = useState(null)
     const [savedAdd, setSavedAdd] = useState("Saved Address:")
@@ -12,8 +32,8 @@ const ProfilePage = ({ user }) => {
 
 
     const [acceptedRequest, setAcceptedRequest] = useState(null)
-    const [notificationTimer, setNotificationTimer] = useState(null)
     const [counter, setCounter] = useState(null)
+    const [dummyaddresses, setDummyAddresses] = useState({})
 
     const getUserLocation = () => {
         if ('geolocation' in navigator) {
@@ -38,33 +58,31 @@ const ProfilePage = ({ user }) => {
     }, [user]);
 
     useEffect(() => {
+        let timer;
 
         const startTimer = () => {
-            if (counter > 0) {
-                const timer = setInterval(() => {
+            if (acceptedRequest && counter > 0) {
+                timer = setInterval(() => {
                     setCounter((prevCounter) => {
                         if (prevCounter > 0) {
                             return prevCounter - 1;
                         } else {
-                            clearInterval(timer)
+                            clearInterval(timer);
                             return 0;
                         }
                     });
                 }, 1000);
-                return timer;
-            } else {
-                return null;
             }
         };
 
-        const timer = startTimer();
+        startTimer();
 
         return () => {
             if (timer) {
-                clearInterval(timer)
+                clearInterval(timer);
             }
         };
-    }, [counter])
+    }, [acceptedRequest, counter])
 
     const getAddressFromCoordinates = (lat, lng) => {
         const apiKey = import.meta.env.VITE_RADAR_API_KEY
@@ -114,9 +132,9 @@ const ProfilePage = ({ user }) => {
     }
 
     const handleTakeParking = (userLocation) => {
-        console.log('Take My Parking clicked')
+        console.log('Get Parking clicked')
         if (userLocation) {
-            const request = { user, location: userLocation }
+            const request = { user, location: userLocation, action: "Taking Parking" }
             setParkingQueue([...parkingQueue, request])
             setCounter(300)
         } else {
@@ -124,11 +142,12 @@ const ProfilePage = ({ user }) => {
         }
     };
 
-    const handleGiveParking = () => {
-        console.log('Give Parking clicked')
+    const handleGiveParking = (userLocation) => {
+        console.log('Take My Parking clicked')
         if (userLocation) {
-            setParkingQueue([...parkingQueue, { location: userLocation, action: 'give' }]);
-            console.log(parkingQueue)
+            const request = { user, location: userLocation, action: "Giving Parking" }
+            setParkingQueue([...parkingQueue, request]);
+            setCounter(300)
         } else {
             console.log('User location not available.');
         }
@@ -153,23 +172,12 @@ const ProfilePage = ({ user }) => {
     };
 
     const handleAcceptRequest = (request) => {
-        setAcceptedRequest(request);
-        setNotificationTimer(null);
+        setAcceptedRequest(request)
         //Notify the other user
 
         const updatedQueue = parkingQueue.filter((item) => item !== request);
         setParkingQueue(updatedQueue);
     };
-
-    const startNotificationTimer = () => {
-        if (acceptedRequest) {
-            const timer = setTimeout(() => {
-                handleAcceptRequest();
-            }, 300000); // 5 minutes in milliseconds
-            setNotificationTimer(timer);
-        }
-    };
-
 
     const TakeParkingOptions = () => {
         return (
@@ -191,6 +199,52 @@ const ProfilePage = ({ user }) => {
             </div>
         )
     }
+
+
+    const giveParkingOptions = () => {
+        return (
+            <div className="parking-options">
+                <h3>Choose Parking Location:</h3>
+                <button className="button-options" onClick={() => {
+                    handleGiveParking(address)
+                    setAccountAddress("")
+                    setSavedAdd("")
+                    setAvailabilityQueue([...availablityQueue, address])
+                    console.log(parkingQueue)
+                }}> Current Location</button>
+
+                <button className="button-options" onClick={() => {
+                    handleGiveParking(accountAddress)
+                    setAddress("")
+                    setSavedAdd("Saved Address:")
+                    setAvailabilityQueue([...availablityQueue, accountAddress])
+                }}> Saved Location</button>
+            </div>
+        )
+    }
+
+    const fetchDummyAddress = (lat, lng) => {
+        const apiKey = import.meta.env.VITE_RADAR_API_KEY
+        const apiUrl = `https://api.radar.io/v1/geocode/reverse?coordinates=${lat},${lng}`;
+
+        fetch(apiUrl, {
+            method: "GET",
+            headers: {
+                Authorization: `${apiKey}`,
+            },
+        })
+            .then(r => r.json())
+            .then((data) => {
+                if (data.addresses && data.addresses.length > 0) {
+                    const formattedAddress = data.addresses[0].formattedAddress;
+                    setDummyAddresses()
+                } else {
+                    console.error("No address data found")
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
     return (
         <div className="geolocation">
             {user && (
@@ -214,7 +268,7 @@ const ProfilePage = ({ user }) => {
                     )}
                     <div className="buttons">
                         <button className="selectButton" onClick={() => { setParkingOptions(TakeParkingOptions) }}>Get Parking</button>
-                        <button className="selectButton" onClick={handleGiveParking}>Take My Parking</button>
+                        <button className="selectButton" onClick={() => setParkingOptions(giveParkingOptions)}>Take My Parking</button>
                         {/* <br /> */}
                         {parkingOptions}
                         {/* <br /> */}
@@ -225,43 +279,44 @@ const ProfilePage = ({ user }) => {
                 <p>Fetching location...</p>
             )}
             <div className='requests'>
-            {counter && (
-            <div>
-                <h2>Parking Requests</h2>
-                {parkingQueue.map((request, index) => (
-                    <div className="acceptRequest" key={index}>
-                        <div className="acceptRP"> 
-                        <p>Request from {request.user.name}</p>
-                        <p>{availablityQueue}</p>
-                        </div>
-                        {request ? (
-                            <div>
-                                <button onClick={() => handleAcceptRequest(request)}>Accept</button>
+                {counter && (
+                    <div>
+                        <h2>Parking Requests</h2>
+                        {parkingQueue.map((request, index) => (
+                            <div className="acceptRequest" key={index}>
+                                <div className="acceptRP">
+                                    <p>Request from {request.user.name}</p>
+                                    <p>{request.action}</p>
+                                    <p>{availablityQueue}</p>
+                                </div>
+                                {request ? (
+                                    <div>
+                                        <button onClick={() => handleAcceptRequest(request)}>Accept</button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <button disabled>Accept</button>
+                                    </div>
+                                )}
                             </div>
+                        ))}
+                    </div>
+                )}
+                {acceptedRequest && (
+                    <div>
+                        <h2>Accepted Request</h2>
+                        <p>{acceptedRequest.user.name} accepted your parking request.</p>
+                        {counter > 0 ? (
+                            <p>
+                                Time left: {Math.floor(counter / 60)}:
+                                {counter % 60 < 10 ? "0" : ""}
+                                {counter % 60}
+                            </p>
                         ) : (
-                            <div>
-                                <button disabled>Accept</button>
-                            </div>
+                            <p>Time has expired.</p>
                         )}
                     </div>
-                ))}
-            </div>
-            )}
-            {acceptedRequest && (
-                <div>
-                    <h2>Accepted Request</h2>
-                    <p>{acceptedRequest.user.name} accepted your parking request.</p>
-                    {counter > 0 ? (
-                        <p>
-                            Time left: {Math.floor(counter / 60)}:
-                            {counter % 60 < 10 ? "0" : ""}
-                            {counter % 60}
-                        </p>
-                    ) : (
-                        <p>Time has expired.</p>
-                    )}
-                </div>
-            )}
+                )}
             </div>
         </div>
     )
