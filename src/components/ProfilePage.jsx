@@ -2,29 +2,10 @@ import React, { useState, useEffect } from 'react'
 import UserData from "../UserData.json"
 import "./ProfilePage.css"
 
-const generateDummyRequests = () => {
-    const dummyRequests = [];
-
-    for (const userData of UserData.users) {
-        const { userLocations, name } = userData;
-        if (userLocations) {
-            const { latitude, longitude } = userLocations;
-            const dummyRequest = {
-                user: { name },
-                location: { lat: latitude, lng: longitude },
-                action: Math.random() < 0.5 ? "Taking Parking" : "Giving Parking"
-            };
-            dummyRequests.push(dummyRequest);
-        }
-    }
-
-    return dummyRequests;
-}
-
 const ProfilePage = ({ user }) => {
     const [userLocation, setUserLocation] = useState(null);
     const [address, setAddress] = useState("");
-    const [parkingQueue, setParkingQueue] = useState(generateDummyRequests());
+    const [parkingQueue, setParkingQueue] = useState([]);
     const [accountAddress, setAccountAddress] = useState("")
     const [parkingOptions, setParkingOptions] = useState(null)
     const [savedAdd, setSavedAdd] = useState("Saved Address:")
@@ -34,6 +15,7 @@ const ProfilePage = ({ user }) => {
     const [acceptedRequest, setAcceptedRequest] = useState(null)
     const [counter, setCounter] = useState(null)
     const [dummyaddresses, setDummyAddresses] = useState({})
+    const [selectedLocation, setSelectedLocation] = useState(null)
 
     const getUserLocation = () => {
         if ('geolocation' in navigator) {
@@ -134,6 +116,7 @@ const ProfilePage = ({ user }) => {
     const handleTakeParking = (userLocation) => {
         console.log('Get Parking clicked')
         if (userLocation) {
+            setSelectedLocation(userLocation)
             const request = { user, location: userLocation, action: "Taking Parking" }
             setParkingQueue([...parkingQueue, request])
             setCounter(300)
@@ -145,6 +128,7 @@ const ProfilePage = ({ user }) => {
     const handleGiveParking = (userLocation) => {
         console.log('Take My Parking clicked')
         if (userLocation) {
+            setSelectedLocation(userLocation)
             const request = { user, location: userLocation, action: "Giving Parking" }
             setParkingQueue([...parkingQueue, request]);
             setCounter(300)
@@ -185,15 +169,15 @@ const ProfilePage = ({ user }) => {
                 <h3>Choose Parking Location:</h3>
                 <button className="button-options" onClick={() => {
                     handleTakeParking(address)
-                    setAccountAddress("")
-                    setSavedAdd("")
+                    // setAccountAddress("")
+                    // setSavedAdd("")
                     setAvailabilityQueue([...availablityQueue, address])
                 }}> Current Location</button>
 
                 <button className="button-options" onClick={() => {
                     handleTakeParking(accountAddress)
-                    setAddress("")
-                    setSavedAdd("Saved Address:")
+                    // setAddress("")
+                    // setSavedAdd("Saved Address:")
                     setAvailabilityQueue([...availablityQueue, accountAddress])
                 }}> Saved Location</button>
             </div>
@@ -207,21 +191,45 @@ const ProfilePage = ({ user }) => {
                 <h3>Choose Parking Location:</h3>
                 <button className="button-options" onClick={() => {
                     handleGiveParking(address)
-                    setAccountAddress("")
-                    setSavedAdd("")
+                    // setAccountAddress("")
+                    // setSavedAdd("")
                     setAvailabilityQueue([...availablityQueue, address])
                     console.log(parkingQueue)
                 }}> Current Location</button>
 
                 <button className="button-options" onClick={() => {
                     handleGiveParking(accountAddress)
-                    setAddress("")
-                    setSavedAdd("Saved Address:")
+                    // setAddress("")
+                    // setSavedAdd("Saved Address:")
                     setAvailabilityQueue([...availablityQueue, accountAddress])
                 }}> Saved Location</button>
             </div>
         )
     }
+
+    useEffect(() => {
+        const generateDummyRequests = () => {
+            const dummyRequests = [];
+
+            for (const userData of UserData.users) {
+                const { userLocations, name } = userData;
+                if (userLocations) {
+                    const { latitude, longitude } = userLocations;
+                    fetchDummyAddress(latitude, longitude);
+                    const dummyRequest = {
+                        user: { name },
+                        location: { lat: latitude, lng: longitude },
+                        action: Math.random() < 0.5 ? "Taking Parking" : "Giving Parking"
+                    };
+                    dummyRequests.push(dummyRequest)
+                }
+            }
+
+            setParkingQueue(dummyRequests)
+        };
+
+        generateDummyRequests()
+    }, [])
 
     const fetchDummyAddress = (lat, lng) => {
         const apiKey = import.meta.env.VITE_RADAR_API_KEY
@@ -237,7 +245,10 @@ const ProfilePage = ({ user }) => {
             .then((data) => {
                 if (data.addresses && data.addresses.length > 0) {
                     const formattedAddress = data.addresses[0].formattedAddress;
-                    setDummyAddresses()
+                    setDummyAddresses((prevDummyAddresses) => ({
+                        ...prevDummyAddresses,
+                        [`${lat},${lng}`]: formattedAddress,
+                    }))
                 } else {
                     console.error("No address data found")
                 }
@@ -287,7 +298,13 @@ const ProfilePage = ({ user }) => {
                                 <div className="acceptRP">
                                     <p>Request from {request.user.name}</p>
                                     <p>{request.action}</p>
-                                    <p>{availablityQueue}</p>
+                                    {request.user.id === user.id && selectedLocation && (
+                                        <p>Selected Location: {selectedLocation}</p>
+                                    )}
+                                    {dummyaddresses[`${request.location.lat},${request.location.lng}`] && (
+                                        <p>{dummyaddresses[`${request.location.lat},${request.location.lng}`]}</p>
+                                    )}
+                                    {/* <p>{availablityQueue}</p> */}
                                 </div>
                                 {request ? (
                                     <div>
