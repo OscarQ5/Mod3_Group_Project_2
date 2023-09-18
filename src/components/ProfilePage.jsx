@@ -116,7 +116,6 @@ const ProfilePage = ({ user }) => {
     const handleTakeParking = (userLocation) => {
         console.log('Get Parking clicked')
         if (userLocation) {
-            setSelectedLocation(userLocation)
             const request = { user, location: userLocation, action: "Taking Parking" }
             setParkingQueue([...parkingQueue, request])
             setCounter(300)
@@ -128,7 +127,6 @@ const ProfilePage = ({ user }) => {
     const handleGiveParking = (userLocation) => {
         console.log('Take My Parking clicked')
         if (userLocation) {
-            setSelectedLocation(userLocation)
             const request = { user, location: userLocation, action: "Giving Parking" }
             setParkingQueue([...parkingQueue, request]);
             setCounter(300)
@@ -137,28 +135,8 @@ const ProfilePage = ({ user }) => {
         }
     };
 
-    const findMatchingParking = (userLocation) => {
-        // Find nearby parking spots here
-        // Calculate distances and return the nearest available parking spot
-        // If no parking is available, return null
-
-        //Dummy parking spot
-        const nearbyParking = {
-            user: { name: 'Dummy User' },
-            location: { lat: 0, lng: 0 },
-        };
-
-        if (nearbyParking) {
-            return nearbyParking;
-        } else {
-            return null;
-        }
-    };
-
     const handleAcceptRequest = (request) => {
         setAcceptedRequest(request)
-        //Notify the other user
-
         const updatedQueue = parkingQueue.filter((item) => item !== request);
         setParkingQueue(updatedQueue);
     };
@@ -169,6 +147,7 @@ const ProfilePage = ({ user }) => {
                 <h3>Choose Parking Location:</h3>
                 <button className="button-options" onClick={() => {
                     handleTakeParking(address)
+                    setSelectedLocation(address)
                     // setAccountAddress("")
                     // setSavedAdd("")
                     setAvailabilityQueue([...availablityQueue, address])
@@ -176,6 +155,7 @@ const ProfilePage = ({ user }) => {
 
                 <button className="button-options" onClick={() => {
                     handleTakeParking(accountAddress)
+                    setSelectedLocation(accountAddress)
                     // setAddress("")
                     // setSavedAdd("Saved Address:")
                     setAvailabilityQueue([...availablityQueue, accountAddress])
@@ -184,6 +164,49 @@ const ProfilePage = ({ user }) => {
         )
     }
 
+    const calculateDistance = (lat1, lon1, lat2, lon2) => {
+        const R = 6371
+        const dLat = deg2rad(lat2 - lat1);
+        const dLon = deg2rad(lon2 - lon1);
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const distance = R * c; 
+        return distance;
+    };
+
+    const deg2rad = (deg) => {
+        return deg * (Math.PI / 180);
+    }
+
+    useEffect(() => {
+        const updatedQueue = parkingQueue.map((request) => {
+            if (selectedLocation) {
+                const distance = calculateDistance(
+                    request.location.lat, request.location.lng,
+                    userLocation.lat, userLocation.lng
+                );
+    
+                let colorCode = "";
+                if (distance <= 0.5) {
+                    colorCode = "green";
+                } else if (distance <= 1.0) {
+                    colorCode = "yellow";
+                } else {
+                    colorCode = "red";
+                }
+    
+                return { ...request, distance, colorCode };
+            } else {
+                return request;
+            }
+        });
+    
+        setParkingQueue(updatedQueue);
+    }, [userLocation, selectedLocation])
+
 
     const giveParkingOptions = () => {
         return (
@@ -191,6 +214,7 @@ const ProfilePage = ({ user }) => {
                 <h3>Choose Parking Location:</h3>
                 <button className="button-options" onClick={() => {
                     handleGiveParking(address)
+                    setSelectedLocation(address)
                     // setAccountAddress("")
                     // setSavedAdd("")
                     setAvailabilityQueue([...availablityQueue, address])
@@ -199,6 +223,7 @@ const ProfilePage = ({ user }) => {
 
                 <button className="button-options" onClick={() => {
                     handleGiveParking(accountAddress)
+                    setSelectedLocation(accountAddress)
                     // setAddress("")
                     // setSavedAdd("Saved Address:")
                     setAvailabilityQueue([...availablityQueue, accountAddress])
@@ -302,8 +327,12 @@ const ProfilePage = ({ user }) => {
                                         <p>Selected Location: {selectedLocation}</p>
                                     )}
                                     {dummyaddresses[`${request.location.lat},${request.location.lng}`] && (
-                                        <p>{dummyaddresses[`${request.location.lat},${request.location.lng}`]}</p>
-                                    )}
+                            <div>
+                                <p>Address: {dummyaddresses[`${request.location.lat},${request.location.lng}`]}</p>
+                                <p>You are {(request.distance * 0.621371).toFixed(2)} miles away from this location</p>
+                                <div className={`color-code ${request.colorCode}`}></div>
+                            </div>
+                        )}
                                     {/* <p>{availablityQueue}</p> */}
                                 </div>
                                 {request ? (
