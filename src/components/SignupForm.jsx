@@ -155,12 +155,7 @@ const SignUpForm = ({ setIsAuthenticated, setUserData }) => {
                 required
             />
             <br />
-            <button type='submit' className="btn" onClick={submitForm}>{signUp ? "Sign Up" : "Login"}</button>
-            <button type='submit' className="btn" onClick={() => setSignUp((prevSignUp) => !prevSignUp)}>
-                {signUp ? 'Switch to Login' : 'Switch to Sign Up'}
-            </button>
-
-
+            <button type='submit' className="btn" onClick={submitForm}>Login</button>
 
             {/* <div className='formResults'>
                 <h2> {name}</h2>
