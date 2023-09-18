@@ -291,7 +291,7 @@ const ProfilePage = ({ user }) => {
             )}
             <div className='requests'>
                 {counter && (
-                    <div>
+                    <div className="parkingRequest">
                         <h2>Parking Requests</h2>
                         {parkingQueue.map((request, index) => (
                             <div className="acceptRequest" key={index}>
@@ -307,7 +307,7 @@ const ProfilePage = ({ user }) => {
                                     {/* <p>{availablityQueue}</p> */}
                                 </div>
                                 {request ? (
-                                    <div>
+                                    <div className="acceptRequestButton">
                                         <button onClick={() => handleAcceptRequest(request)}>Accept</button>
                                     </div>
                                 ) : (
