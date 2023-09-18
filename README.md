@@ -1,8 +1,2 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Welcome to the Take My Parking Application . This full stack web application is designed for user to user to help solve neighborhood parking constraints . Upon arrival to the application the users will access to a navigation bar that will have a dropdown menu with options. The user will have access to a form so they can individualize there accounts . Once the user has a account they will have access to there profile page which will welcome them with a personalized welcome message . Also on the profile page will be details saved about the users car by size , type and model . As well as the users car image and the get and take parking buttons . Upon clicking the buttons users will be promted with current or saved location buttons once clicked it will put the users request and location on nearby users parking queues . Users will have the ability to interact with other users by clicking the accept button on a nearby parking request . Once the request is accepted the user will be promted with a 5 minute timer notification to let know who has accepted your parking request . The applications naviagtion bar can be used to sign out the account or more options like the about page .This application can be used on desktop , ipad and mobile phone . This application idea, design and build was formulated by four bright pursuit fellows Oscar Quintanilla, Jeremy Montes, Natyka Callwood and Kenia Decoteau AKA The Code Crafters .
+![Alt text](<Untitled_Artwork 3.jpg>)
