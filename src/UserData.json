@@ -46,7 +46,7 @@
                 "model": "Jeep",
                 "color": "Black",
                 "carType": "SUV",
-                "image": "public/SUV.jpeg"
+                "image": "/SUV.jpeg"
             }
         },
         {
@@ -62,7 +62,7 @@
                 "model": "Audi",
                 "color": "Red",
                 "carType": "Sedan",
-                "image": "public/Sedan.jpeg"
+                "image": "/Sedan.jpeg"
             }
         },
         {
@@ -77,7 +77,7 @@
             "car":{
                 "model": "Mercedes-Benz",
             "carType": "Convertable",
-            "image": "public/Convertible.jpeg",
+            "image": "/Convertible.jpeg",
             "color": "Dark Gray"
             }
         },
@@ -93,7 +93,7 @@
             "car":{
                 "model": "Ferrari",
                 "carType": "Sports-Car",
-                "image": "public/Sports-Car.jpeg",
+                "image": "/Sports-Car.jpeg",
                 "color": "Yellow"
             }
         },
@@ -110,7 +110,7 @@
             "car":{
                 "model": "Safari",
                 "carType": "Van",
-                "image": "public/Red-Van.jpeg",
+                "image": "/Red-Van.jpeg",
                 "color": "Red"
             }
         },
@@ -126,7 +126,7 @@
             "car":{
                 "model": "Ford",
                 "carType": "Truck",
-                "image": "public/Blue-Truck.jpeg",
+                "image": "/Blue-Truck.jpeg",
                 "color": "Gray"
             }
         },
@@ -144,7 +144,7 @@
             "car":{
                 "model": "Mini Cooper",
                 "carType": "Smart Car",
-                "image": "public/Smart-Car-Green.jpeg",
+                "image": "/Smart-Car-Green.jpeg",
                 "color": "Green"
             }
         },
@@ -161,7 +161,7 @@
             "car":{
                 "model": "BMW",
                 "carType": "Coupe",
-                "image": "public/Coupe.jpeg",
+                "image": "/Coupe.jpeg",
                 "color": "White"
             }
         }
