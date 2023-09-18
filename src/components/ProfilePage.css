@@ -76,7 +76,39 @@ button{
     flex-direction: row;
     align-items: start;
     justify-content: center;
+ 
     padding: 5px;
     gap:20px;
 
 }
+
+.parkingRequest{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.acceptRequestButton{
+    display:flex;
+    flex-direction: row;
+    align-items: end;
+   
+}
+
+
+/* .acceptRequestButton{
+    display:grid;
+    grid-template-columns:.5fr 1fr;
+    grid-column: 2;
+  
+   
+} */
+
+/* .requests{
+    
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    justify-items:flex-start;
+    gap: 100px;
+
+} */
