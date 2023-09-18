@@ -13,7 +13,7 @@
                 "model": "BMW",
                 "color": "White",
                 "carType": "Coupe",
-                "image": "src/assets/Coupe.jpeg"
+                "image": "/Coupe.jpeg"
             }
         },
         {
@@ -28,7 +28,7 @@
             "car":{
                 "model": "Punch Buggy",
                 "carType": "Smart Car",
-                "image": "src/assets/Smart-Car-Green.jpeg",
+                "image": "/Smart-Car-Green.jpeg",
                 "color": "Green"
     
             }
@@ -46,7 +46,7 @@
                 "model": "Jeep",
                 "color": "Black",
                 "carType": "SUV",
-                "image": "src/assets/SUV.jpeg"
+                "image": "public/SUV.jpeg"
             }
         },
         {
@@ -62,7 +62,7 @@
                 "model": "Audi",
                 "color": "Red",
                 "carType": "Sedan",
-                "image": "src/assets/Sedan.jpeg"
+                "image": "public/Sedan.jpeg"
             }
         },
         {
@@ -77,7 +77,7 @@
             "car":{
                 "model": "Mercedes-Benz",
             "carType": "Convertable",
-            "image": "src/assets/Convertible.jpeg",
+            "image": "public/Convertible.jpeg",
             "color": "Dark Gray"
             }
         },
@@ -93,7 +93,7 @@
             "car":{
                 "model": "Ferrari",
                 "carType": "Sports-Car",
-                "image": "src/assets/Sports-Car.jpeg",
+                "image": "public/Sports-Car.jpeg",
                 "color": "Yellow"
             }
         },
@@ -110,7 +110,7 @@
             "car":{
                 "model": "Safari",
                 "carType": "Van",
-                "image": "src/assets/Red-Van.jpeg",
+                "image": "public/Red-Van.jpeg",
                 "color": "Red"
             }
         },
@@ -126,7 +126,7 @@
             "car":{
                 "model": "Ford",
                 "carType": "Truck",
-                "image": "src/assets/Blue-Truck.jpeg",
+                "image": "public/Blue-Truck.jpeg",
                 "color": "Gray"
             }
         },
@@ -144,7 +144,7 @@
             "car":{
                 "model": "Mini Cooper",
                 "carType": "Smart Car",
-                "image": "src/assets/Smart-Car-Green.jpeg",
+                "image": "public/Smart-Car-Green.jpeg",
                 "color": "Green"
             }
         },
@@ -161,7 +161,7 @@
             "car":{
                 "model": "BMW",
                 "carType": "Coupe",
-                "image": "src/assets/Coupe.jpeg",
+                "image": "public/Coupe.jpeg",
                 "color": "White"
             }
         }
