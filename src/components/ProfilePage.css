@@ -42,7 +42,7 @@ button{
 
 .acceptRequest button{
  
-  color:white;
+  color:black;
   display: inline-block;
   padding: 3px 3px;
   margin-left:70px;
@@ -50,7 +50,6 @@ button{
 }
 
 .acceptRequest button:hover{
-    background-color: rgb(8, 164, 8);
     color:black;
     border: 2px solid black;
 
@@ -95,6 +94,17 @@ button{
    
 }
 
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.red {
+    background-color: red;
+}
 
 /* .acceptRequestButton{
     display:grid;
