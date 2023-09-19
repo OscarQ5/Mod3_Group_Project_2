@@ -16,6 +16,7 @@ const ProfilePage = ({ user }) => {
     const [counter, setCounter] = useState(null)
     const [dummyaddresses, setDummyAddresses] = useState({})
     const [selectedLocation, setSelectedLocation] = useState(null)
+    const [selectedLocationCoordinates, setSelectedLocationCoordinates] = useState(null)
 
     const getUserLocation = () => {
         if ('geolocation' in navigator) {
@@ -137,6 +138,7 @@ const ProfilePage = ({ user }) => {
 
     const handleAcceptRequest = (request) => {
         setAcceptedRequest(request)
+        setCounter(300)
         const updatedQueue = parkingQueue.filter((item) => item !== request);
         setParkingQueue(updatedQueue);
     };
@@ -148,6 +150,7 @@ const ProfilePage = ({ user }) => {
                 <button className="button-options" onClick={() => {
                     handleTakeParking(address)
                     setSelectedLocation(address)
+                    getCoordinatesFromAddress(address)
                     // setAccountAddress("")
                     // setSavedAdd("")
                     setAvailabilityQueue([...availablityQueue, address])
@@ -156,6 +159,7 @@ const ProfilePage = ({ user }) => {
                 <button className="button-options" onClick={() => {
                     handleTakeParking(accountAddress)
                     setSelectedLocation(accountAddress)
+                    getCoordinatesFromAddress(accountAddress)
                     // setAddress("")
                     // setSavedAdd("Saved Address:")
                     setAvailabilityQueue([...availablityQueue, accountAddress])
@@ -173,8 +177,17 @@ const ProfilePage = ({ user }) => {
             Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
             Math.sin(dLon / 2) * Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        const distance = R * c; 
-        return distance;
+        const distance = R * c;
+        let colorClass = "";
+
+        if (distance <= 0.5) {
+            colorClass = "green";
+        } else if (distance <= 1.0) {
+            colorClass = "yellow";
+        } else {
+            colorClass = "red";
+        }
+        return { distance, colorClass }
     };
 
     const deg2rad = (deg) => {
@@ -183,29 +196,19 @@ const ProfilePage = ({ user }) => {
 
     useEffect(() => {
         const updatedQueue = parkingQueue.map((request) => {
-            if (selectedLocation) {
-                const distance = calculateDistance(
+            if (selectedLocationCoordinates) {
+                const { distance, colorClass } = calculateDistance(
                     request.location.lat, request.location.lng,
-                    userLocation.lat, userLocation.lng
+                    selectedLocationCoordinates[1], selectedLocationCoordinates[0]
                 );
-    
-                let colorCode = "";
-                if (distance <= 0.5) {
-                    colorCode = "green";
-                } else if (distance <= 1.0) {
-                    colorCode = "yellow";
-                } else {
-                    colorCode = "red";
-                }
-    
-                return { ...request, distance, colorCode };
+                return { ...request, distance, colorClass };
             } else {
                 return request;
             }
         });
-    
+
         setParkingQueue(updatedQueue);
-    }, [userLocation, selectedLocation])
+    }, [userLocation, selectedLocationCoordinates])
 
 
     const giveParkingOptions = () => {
@@ -215,15 +218,16 @@ const ProfilePage = ({ user }) => {
                 <button className="button-options" onClick={() => {
                     handleGiveParking(address)
                     setSelectedLocation(address)
+                    getCoordinatesFromAddress(address)
                     // setAccountAddress("")
                     // setSavedAdd("")
                     setAvailabilityQueue([...availablityQueue, address])
-                    console.log(parkingQueue)
                 }}> Current Location</button>
 
                 <button className="button-options" onClick={() => {
                     handleGiveParking(accountAddress)
                     setSelectedLocation(accountAddress)
+                    getCoordinatesFromAddress(accountAddress)
                     // setAddress("")
                     // setSavedAdd("Saved Address:")
                     setAvailabilityQueue([...availablityQueue, accountAddress])
@@ -281,6 +285,28 @@ const ProfilePage = ({ user }) => {
             .catch(err => console.error(err));
     }
 
+    const getCoordinatesFromAddress = (address) => {
+        const apiKey = import.meta.env.VITE_RADAR_API_KEY;
+        const apiUrl = `https://api.radar.io/v1/geocode/forward?query=${encodeURIComponent(address)}`;
+
+        fetch(apiUrl, {
+            method: "GET",
+            headers: {
+                Authorization: `${apiKey}`,
+            },
+        })
+            .then(r => r.json())
+            .then((data) => {
+                if (data.addresses && data.addresses.length > 0) {
+                    const coordinates = data.addresses[0].geometry.coordinates
+                    setSelectedLocationCoordinates(coordinates)
+                } else {
+                    console.error("No coordinates found for the address")
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
     return (
         <div className="geolocation">
             {user && (
@@ -327,17 +353,16 @@ const ProfilePage = ({ user }) => {
                                         <p>Selected Location: {selectedLocation}</p>
                                     )}
                                     {dummyaddresses[`${request.location.lat},${request.location.lng}`] && (
-                            <div>
-                                <p>Address: {dummyaddresses[`${request.location.lat},${request.location.lng}`]}</p>
-                                <p>You are {(request.distance * 0.621371).toFixed(2)} miles away from this location</p>
-                                <div className={`color-code ${request.colorCode}`}></div>
-                            </div>
-                        )}
+                                        <div>
+                                            <p>Address: {dummyaddresses[`${request.location.lat},${request.location.lng}`]}</p>
+                                            <p>You are {(request.distance * 0.621371).toFixed(2)} miles away from this location</p>
+                                        </div>
+                                    )}
                                     {/* <p>{availablityQueue}</p> */}
                                 </div>
                                 {request ? (
-                                    <div className="acceptRequestButton">
-                                        <button onClick={() => handleAcceptRequest(request)}>Accept</button>
+                                    <div className="acceptRequestButton" >
+                                        <button onClick={() => handleAcceptRequest(request)} className={`${request.colorClass}`}>Accept</button>
                                     </div>
                                 ) : (
                                     <div>
